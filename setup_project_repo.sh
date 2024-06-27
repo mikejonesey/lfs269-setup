@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir flux kustomize helm
+mkdir -p flux kustomize helm
 
 cat >>  README.md <<EOF
 ## Deployment Repo
@@ -88,7 +88,7 @@ You would maintain 3 Different Repos to maintain
 EOF
 
 # Flux
-mkdir flux/base flux/staging flux/production
+mkdir -p flux/base flux/staging flux/production
 
 cat > flux/base/README.md <<EOF
 ## Kubernetes Deployment Manifests
@@ -193,7 +193,7 @@ resources:
 EOF
 
 # Helm 
-mkdir helm/charts
+mkdir -p helm/charts
 
 cat > helm/charts/README.md <<EOF
 ## Helm Charts 

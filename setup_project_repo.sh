@@ -14,6 +14,8 @@
 
 mkdir -p flux kustomize helm
 
+# main readme is maintained as append, but only run 1x
+if [ ! -f "flux/base/README.md" ]; then
 cat >>  README.md <<EOF
 ## Deployment Repo
 
@@ -98,6 +100,7 @@ You would maintain 3 Different Repos to maintain
        * Running Reconciliation for each of the Flux Resource with actual Kubernetes Cluster. 
           
 EOF
+fi
 
 # Flux
 mkdir -p flux/base flux/staging flux/production

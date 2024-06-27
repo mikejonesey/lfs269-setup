@@ -1,4 +1,16 @@
 #!/bin/bash
+#
+# Example useage
+#
+# default example:
+# setup_project_repo.sh
+#
+# instavote apps:
+# setup_project_repo.sh redis
+# setup_project_repo.sh results
+# setup_project_repo.sh vote
+# setup_project_repo.sh worker
+#
 
 mkdir -p flux kustomize helm
 

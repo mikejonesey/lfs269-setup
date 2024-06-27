@@ -103,7 +103,7 @@ EOF
 fi
 
 # Flux
-mkdir -p flux/base flux/staging flux/production
+mkdir -p flux/base flux/overlays/staging flux/overlays/production
 
 cat > flux/base/README.md <<EOF
 ## Kubernetes Deployment Manifests
@@ -132,37 +132,37 @@ Image Automation:
 
 EOF
 
-cat > flux/staging/README.md <<EOF
+cat > flux/overlays/staging/README.md <<EOF
 ## Kubernetes Deployment Manifests
 This path is to add Kustomize Overlays for staging environemnt to flux sync  manifests defined in ../base.
 If you add a patch file, ensure you update kustomization.yaml accordingly.
 EOF
 
-cat > flux/production/README.md <<EOF
+cat > flux/overlays/production/README.md <<EOF
 ## Kubernetes Deployment Manifests
 This path is to add Kustomize Overlays for staging environemnt to  manifests flux sync  defined in ../base.
 If you add a patch file, ensure you update kustomization.yaml accordingly.
 EOF
 
 
-cat > flux/staging/kustomization.yaml <<EOF
+cat > flux/overlays/staging/kustomization.yaml <<EOF
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../base
+- ../../base
 EOF
 
 
-cat > flux/production/kustomization.yaml <<EOF
+cat > flux/overlays/production/kustomization.yaml <<EOF
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../base
+- ../../base
 EOF
 
 # kustomize - arg 1, or example
 KUSTOMIZE_BASE="kustomize/${1:-example-project}"
-mkdir -p ${KUSTOMIZE_BASE}/base ${KUSTOMIZE_BASE}/staging ${KUSTOMIZE_BASE}/production
+mkdir -p ${KUSTOMIZE_BASE}/base ${KUSTOMIZE_BASE}/overlays/staging ${KUSTOMIZE_BASE}/overlays/production
 
 cat > ${KUSTOMIZE_BASE}/base/README.md <<EOF
 ## Kubernetes Deployment Manifests
@@ -181,30 +181,30 @@ In fact it could be any resource that you would apply to kubernetes.
 
 EOF
 
-cat > ${KUSTOMIZE_BASE}/staging/README.md <<EOF
+cat > ${KUSTOMIZE_BASE}/overlays/staging/README.md <<EOF
 ## Kubernetes Deployment Manifests
 This path is to add Kustomize Overlays for staging environemnt to  manifests defined in ../base. 
 If you add a patch file, ensure you update kustomization.yaml accordingly. 
 EOF
 
-cat > ${KUSTOMIZE_BASE}/production/README.md <<EOF
+cat > ${KUSTOMIZE_BASE}/overlays/production/README.md <<EOF
 ## Kubernetes Deployment Manifests
 This path is to add Kustomize Overlays for staging environemnt to  manifests defined in ../base.
 If you add a patch file, ensure you update kustomization.yaml accordingly.
 EOF
 
-cat > ${KUSTOMIZE_BASE}/staging/kustomization.yaml <<EOF
+cat > ${KUSTOMIZE_BASE}/overlays/staging/kustomization.yaml <<EOF
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../base
+- ../../base
 EOF
 
-cat > ${KUSTOMIZE_BASE}/production/kustomization.yaml <<EOF
+cat > ${KUSTOMIZE_BASE}/overlays/production/kustomization.yaml <<EOF
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../base
+- ../../base
 EOF
 
 # Helm 
